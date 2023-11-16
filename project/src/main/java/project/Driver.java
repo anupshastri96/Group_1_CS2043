@@ -14,14 +14,13 @@ public class Driver{
        
         /*  trying to read an input file from the command line which contains constants defined by the user.
             Then add it to the Constants hash map */
-        try {
-        
+ if(args.length >1){
+    try {
         File file = new File(args[1]);
         Scanner myReader = new Scanner(file);
 
         //Looping through the file
             while (myReader.hasNextLine()) {
-
                 String line = myReader.nextLine();
                 //Storing each constant symbol and their corresponding value in each line, in the String array.
                 String[] newConstants = line.split(" ");
@@ -31,7 +30,7 @@ public class Driver{
                     String symbol = newConstants[1];
                     String value  = newConstants[2];
                     //Calling the funtion in the Constant class.
-                    newConstant.addConstants(symbol, value);
+                    newConstant.addConstant(symbol, value);
                 }else{
                     System.out.println("Invalid Line.");
                 }
@@ -43,46 +42,44 @@ public class Driver{
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+ }
 
-        finally{
             // stores the function or symbol(S,U,C,Ex) the user wants to use.
-            String UserInput;
+            String UserInput = "";
             //The physics equation that the user wants to convert,simplify or check.
             String equation;
 
             Scanner scan = new Scanner(System.in);
 
             //Unless the user types "Ex" or exit, we want the program to run without terminating after each use.
-            while(!(UserInput.equals("Ex"))){
+        while(!UserInput.equals("Ex")){
                 System.out.print("Program: Select (S)implify, Check (U)nits, (C)onvert Units, (Ex)it\nUser: ");
                 UserInput = scan.nextLine();
-                equation = scan.nextLine();
+            if(!UserInput.equals("Ex")){
+                    System.out.println("Enter equation: ");
+                    equation = scan.nextLine();
 
-                if(UserInput== "S"){
-                    System.out.println("Program: "+simplify(equation));
+                if(UserInput.equals("S")){
+                    System.out.println("Program: "+ Functions.simplify(equation));
                 }
 
-                if(UserInput== "U"){
-                    System.out.println("Program: "+checkUnits(equation)); 
+                if(UserInput.equals("U")){
+                    System.out.println("Program: "+ Functions.checkUnits(equation)); 
                 }
 
-                if(UserInput== "C"){
-                    System.out.println("Program: "+convert(equation));
+                if(UserInput.equals("C")){
+                    System.out.print("Enter target unit: ");
+                    String targetUnit = scan.nextLine();
+                    System.out.println("Program: " +Functions.convert(equation, targetUnit));
                 }
 
-                if(UserInput== "Ex"){
-                    System.out.println("Bye!");
-                    break;
-                }
             }
-        }
     }
-
-
-
-
-
-
+        System.out.println("Bye!");
+    }
 }
+
+
+
 
 
