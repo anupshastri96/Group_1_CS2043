@@ -201,7 +201,7 @@ public class Unit {
       return value;
   }
   
-  private int findDimension(String unit) {
+  public int findDimension(String unit) {
       int dimension = -1;
       boolean found = false;
       for(int dim = 0; dim < unitList.length && found == false; dim++) {

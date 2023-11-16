@@ -5,27 +5,26 @@ public class Functions {
         Unit unitConverter = new Unit(); 
         return unitConverter.convertTo(expression, unit); 
     } 
-  
-  
- 
-public static String simplify(String expression) { 
-    Unit unit = new Unit(); 
-  
-    String[] parts = expression.split(" "); 
-    double value = Double.parseDouble(parts[0]); 
-    String unitString = parts[1]; 
-  
-    String baseUnits = unit.expandCompound(unitString); 
-  
-    if (baseUnits == null) { 
-        baseUnits = unit.convertToSI(unitString); 
-    } 
-   
-    String simplifiedExpression = value + " " + baseUnits; 
-    return "Simplified expression: " + simplifiedExpression; 
-} 
-   
- 
+    
+    
+	public static String simplify(String expression) { 
+	    Unit unit = new Unit(); 
+	  
+	    String[] parts = expression.split(" "); 
+	    double value = Double.parseDouble(parts[0]); 
+	    String unitString = parts[1]; 
+	  
+	    String baseUnits = unit.expandCompound(unitString); 
+	  
+	    if (baseUnits == null) { 
+	        baseUnits = unit.convertToSI(unitString); 
+	    } 
+	   
+	    String simplifiedExpression = value + " " + baseUnits; 
+	    return "Simplified expression: " + simplifiedExpression; 
+	} 
+	
+	
     public static boolean checkUnits(String equation) { 
         Unit unitConverter = new Unit(); 
   
@@ -37,11 +36,12 @@ public static String simplify(String expression) {
   
             return unitConverter.findDimension(rhs) == unitConverter.findDimension(lhs); 
         } 
-        else { 
+        else {
             return false; 
         } 
     } 
-  
+    
+    
     private static String convToString(Unit unitConverter, String input) { 
         String[] components = input.split(" "); 
         StringBuilder expanded = new StringBuilder(); 
