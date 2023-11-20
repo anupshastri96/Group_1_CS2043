@@ -11,25 +11,29 @@ public class CheckUnits {
     Scanner scan;
 
     String checkUnits(String input) {
-        String left = "";
-        String right = "";
-        boolean equalsFound = false;
-        
-        for(int i = 0; i < input.length(); i++) {
-            if(equalsFound == false && input.charAt(i) == '=') {
-                equalsFound = true;
-            }
-            else if(equalsFound == false) {
-                left = left + input.charAt(i);
-            }
-            else {
-                right = right + input.charAt(i);
-            }
-        }
-        
-        leftUnits = scanning(leftUnits, left);
-        rightUnits = scanning(rightUnits, right);
-        
+//        String left = "";
+//        String right = "";
+//        boolean equalsFound = false;
+//        
+//        for(int i = 0; i < input.length(); i++) {
+//            if(equalsFound == false && input.charAt(i) == '=') {
+//                equalsFound = true;
+//            }
+//            else if(equalsFound == false) {
+//                left = left + input.charAt(i);
+//            }
+//            else {
+//                right = right + input.charAt(i);
+//            }
+//        }
+//        
+//        leftUnits = scanning(leftUnits, left);
+//        rightUnits = scanning(rightUnits, right);
+    	String[] splitString = input.split("=", 2);
+    	
+    	leftUnits = scanning(leftUnits, splitString[0]);
+        rightUnits = scanning(rightUnits, splitString[1]);
+//---    	
         powerL = setExp(leftUnits, 1);
         powerR = setExp(rightUnits, 1);
         
@@ -151,7 +155,7 @@ public class CheckUnits {
         return returnMessage;
     }
     
-    private ArrayList<String> scanning(ArrayList<String> units, String in) {
+    private ArrayList<String> scanning(ArrayList<String> units, String in) {//connvert string to array list of tokens.
         scan = new Scanner(in);
         while(scan.hasNext()) {
             units.add(scan.next());
@@ -182,7 +186,7 @@ public class CheckUnits {
         boolean foundEx;
         boolean numOnly = true;
         
-        for(int i = 0; i < units.size(); i++) {
+        for(int i = 0; i < units.size(); i++) {//for every unit
             foundEx = false;
             filler = "";
             exponent = 0;
