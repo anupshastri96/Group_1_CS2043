@@ -2,6 +2,7 @@ package project;
 
 import java.lang.Math;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Unit {
@@ -308,5 +309,35 @@ public class Unit {
       }
       
       return value + newUnit;
+  }
+  
+  /* Input: 
+   * units (arraylist of just string units)
+   * 	Example input: ["km", "km^-3", "/g", "/L^3"]
+   * 
+   * Return: 
+   * return: arraylist of exponents
+   * 	Example return: [1, -3, -1, -3]
+   * changes: simplifies units to only have units remaining
+   * 	Example change: ["km", "km", "g", "L"]
+   */
+  public ArrayList<Double> setExp(ArrayList<String> units) {
+	  ArrayList<Double> exponents = new ArrayList<Double>();
+	  for (int i = 0; i < units.size(); i++) {//for every unit
+		  String[] unitAndEx = units.get(i).split("^", 2);
+		  if (unitAndEx.length == 2) {
+			  exponents.set(i, Double.parseDouble(unitAndEx[1]));
+		  }
+		  else {
+			  exponents.set(i, 1.0);
+		  }
+		  units.set(i, unitAndEx[0]);
+		  
+		  if(units.get(i).charAt(0) == '/') {
+			  units.set(i, units.get(i).substring(1));
+			  exponents.set(i, exponents.get(i) * -1);
+          }
+	  }
+	  return exponents;
   }
 }
