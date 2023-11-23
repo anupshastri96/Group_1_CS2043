@@ -26,33 +26,6 @@ public class Functions {
 	} 
 	
 	
-    public static boolean checkUnits(String equation) { 
-        Unit unitConverter = new Unit(); 
-  
-        String[] sides = equation.split("="); 
-  
-        if (sides.length == 2) { 
-            String rhs = convToString(unitConverter, sides[0]); 
-            String lhs = convToString(unitConverter, sides[1]); 
-  
-            return unitConverter.findDimension(rhs) == unitConverter.findDimension(lhs); 
-        } 
-        else {
-            return false; 
-        } 
-    } 
-    
-    
-    private static String convToString(Unit unitConverter, String input) { 
-        String[] components = input.split(" "); 
-        StringBuilder expanded = new StringBuilder(); 
-        
-        for (String component : components) { 
-            expanded.append(unitConverter.expandCompound(component)).append(" "); 
-        } 
-  
-        return expanded.toString().trim(); 
-    } 
 
 
     public static String checkUnits(String input) {
