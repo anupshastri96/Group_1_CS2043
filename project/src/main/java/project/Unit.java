@@ -230,7 +230,7 @@ public class Unit {
       return toReturn;
   }
   
-  private String getUnits(String input) {
+  public String getUnits(String input) {
       String toReturn = "";
       for(int i = 0; i < input.length(); i++) {
           if(Character.isAlphabetic(input.charAt(i))) {
